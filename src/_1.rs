@@ -21,7 +21,7 @@ pub fn get_1_first() -> i32 {
 
 pub fn get_1_second() -> i32 {
     let content = include_str!("../1_input.data");
-
+    let first_x_amount = 3;
     let mut calorie_sums = content
         .split("\n\n")
         .map(|block| {
@@ -37,5 +37,5 @@ pub fn get_1_second() -> i32 {
         .collect::<Vec<i32>>();
     calorie_sums.sort();
     calorie_sums.reverse();
-    calorie_sums[0..3].iter().fold(0, |a, b| a + b)
+    calorie_sums[0..first_x_amount].iter().fold(0, |a, b| a + b)
 }
