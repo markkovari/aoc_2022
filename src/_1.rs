@@ -37,12 +37,5 @@ pub fn get_1_second() -> i32 {
         .collect::<Vec<i32>>();
     calorie_sums.sort();
     calorie_sums.reverse();
-    let result = match calorie_sums[..] {
-        [] => 0,
-        [first] => first,
-        [first, second] => first + second,
-        [first, second, third] => first + second + third,
-        [first, second, third, ..] => first + second + third,
-    };
-    result
+    calorie_sums[0..3].iter().fold(0, |a, b| a + b)
 }
