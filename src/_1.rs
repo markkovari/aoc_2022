@@ -1,5 +1,5 @@
 pub fn get_1_first() -> i32 {
-    let content = include_str!("../1_input.data");
+    let content = include_str!("../inputs/1/input.data");
     let mut max_sum: i32 = 0;
 
     for block in content.split("\n\n") {
@@ -20,7 +20,7 @@ pub fn get_1_first() -> i32 {
 }
 
 pub fn get_1_second() -> i32 {
-    let content = include_str!("../1_input.data");
+    let content = include_str!("../inputs/1/input.data");
     let first_x_amount = 3;
     let mut calorie_sums = content
         .split("\n\n")

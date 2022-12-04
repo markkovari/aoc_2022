@@ -62,7 +62,7 @@ fn get_choice_based_on_expected_outcome<'a>(opponent: &'a str, choice: &'a str) 
 }
 
 pub fn get_2_first() -> i32 {
-    include_str!("../2_input.data")
+    include_str!("../inputs/2/input.data")
         .lines()
         .into_iter()
         .map(|line| {
@@ -73,7 +73,7 @@ pub fn get_2_first() -> i32 {
 }
 
 pub fn get_2_second() -> i32 {
-    include_str!("../2_input.data")
+    include_str!("../inputs/2/input.data")
         .lines()
         .into_iter()
         .map(|line| {

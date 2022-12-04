@@ -53,7 +53,7 @@ pub fn get_intersections(of_texts: String) -> Vec<HashSet<String>> {
 }
 
 pub fn get_3_first() -> u32 {
-    let intersections = get_intersections(include_str!("../3_input.data").to_owned());
+    let intersections = get_intersections(include_str!("../inputs/3/input.data").to_owned());
     let sum_of_intersection_values = intersections
         .iter()
         .map(|diffs| {
@@ -92,7 +92,7 @@ fn get_commons_of_three(
 }
 
 pub fn get_3_second() -> u32 {
-    let blocks = include_str!("../3_input.data")
+    let blocks = include_str!("../inputs/2/input.data")
         .lines()
         .collect::<Vec<&str>>();
     let mut unique_chars: Vec<Vec<char>> = vec![];
