@@ -49,9 +49,8 @@ struct RangePair {
 impl FromStr for RangePair {
     type Err = String;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        const separator: &str = ",";
         let ranges = s
-            .split(separator)
+            .split(",")
             .filter_map(|part| match part.parse::<Range>() {
                 Ok(e) => Some(e),
                 Err(_) => None,
@@ -77,15 +76,19 @@ impl RangePair {
     }
 }
 
-pub fn get_4_first() -> u32 {
+fn read_pairs() -> Vec<RangePair> {
     let content = include_str!("../inputs/4/input.data").lines();
-    let pairs = content
+    content
         .into_iter()
         .filter_map(|line| match line.parse::<RangePair>() {
             Err(_) => None,
             Ok(e) => Some(e),
         })
-        .collect::<Vec<RangePair>>();
+        .collect::<Vec<RangePair>>()
+}
+
+pub fn get_4_first() -> u32 {
+    let pairs = read_pairs();
     let overlaps = pairs
         .iter()
         .filter(|&pair| pair.has_overlap())
@@ -94,14 +97,7 @@ pub fn get_4_first() -> u32 {
 }
 
 pub fn get_4_second() -> u32 {
-    let content = include_str!("../inputs/4/input.data").lines();
-    let pairs = content
-        .into_iter()
-        .filter_map(|line| match line.parse::<RangePair>() {
-            Err(_) => None,
-            Ok(e) => Some(e),
-        })
-        .collect::<Vec<RangePair>>();
+    let pairs = read_pairs();
     let overlaps = pairs
         .iter()
         .filter(|&pair| pair.has_common_elements())
