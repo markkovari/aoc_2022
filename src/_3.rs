@@ -1,4 +1,4 @@
-use std::{collections::HashSet, fmt::format, hash::Hash, str::FromStr};
+use std::{collections::HashSet, str::FromStr};
 
 #[derive(Debug)]
 pub struct Rucksack {
