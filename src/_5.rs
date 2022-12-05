@@ -1,4 +1,4 @@
-use std::{fmt::format, str::FromStr};
+use std::str::FromStr;
 
 use regex::Regex;
 
@@ -118,6 +118,15 @@ impl Shipment {
             }
         }
     }
+    fn apply_multiple(&mut self, instructions: Vec<Instruction>) {
+        for instruction in instructions.iter() {
+            self.transfer_from_to_multiple(
+                instruction.from as usize,
+                instruction.to as usize,
+                instruction.amount,
+            );
+        }
+    }
 
     fn transfer_from_to(&mut self, from: usize, to: usize) {
         let from = &mut self.stacks[from - 1];
@@ -125,6 +134,15 @@ impl Shipment {
             Some(e) => &mut self.stacks[to - 1].push(e),
             _ => &mut (),
         };
+    }
+    fn transfer_from_to_multiple(&mut self, from: usize, to: usize, amount: i32) {
+        let from = &mut self.stacks[from - 1];
+        let (remaining, transferable) = from
+            .elements
+            .split_at(from.elements.len() - amount as usize);
+        let mut to_transfer = transferable.clone().to_owned().to_vec();
+        from.elements = remaining.clone().to_vec();
+        (&mut self.stacks[to - 1]).elements.append(&mut to_transfer);
     }
     fn get_top(&mut self) -> Vec<String> {
         self.stacks
@@ -199,8 +217,11 @@ pub fn get_5_first() -> String {
     stack.get_top().join("")
 }
 
-pub fn get_5_second() -> i32 {
-    1
+pub fn get_5_second() -> String {
+    let (mut stack, instructions) = read_stack_and_instructions();
+
+    stack.apply_multiple(instructions);
+    stack.get_top().join("")
 }
 
 #[cfg(test)]
