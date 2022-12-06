@@ -3,12 +3,14 @@ use _2::{get_2_first, get_2_second};
 use _3::{get_3_first, get_3_second};
 use _4::{get_4_first, get_4_second};
 use _5::{get_5_first, get_5_second};
+use _6::{get_6_first, get_6_second};
 
 mod _1;
 mod _2;
 mod _3;
 mod _4;
 mod _5;
+mod _6;
 
 fn main() {
     println!("1st day =>");
@@ -26,4 +28,7 @@ fn main() {
     println!("5th day =>");
     println!("\t {}", get_5_first());
     println!("\t {}", get_5_second());
+    println!("6th day =>");
+    println!("\t {}", get_6_first());
+    println!("\t {}", get_6_second());
 }
