@@ -14,7 +14,6 @@ use _5::{get_5_first, get_5_second};
 use _6::{get_6_first, get_6_second};
 use _7::{get_7_first, get_7_second};
 
-
 fn main() {
     println!("1st day =>");
     println!("\t {}", get_1_first());
