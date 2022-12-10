@@ -89,11 +89,23 @@ impl Computer {
             .fold(0, |a, b| a + b)
     }
 
-    fn render_at_state(&self, at: usize) -> String {
-        if at == 1 {
-            return "###.....................................".to_owned();
-        }
-        return "".to_owned();
+    fn render(&self) -> String {
+        self.iteration_values
+            .chunks(40)
+            .into_iter()
+            .flat_map(|row| {
+                row.iter()
+                    .enumerate()
+                    .map(|(i, x)| {
+                        if x.1.abs_diff(i as i32) <= 1 {
+                            '\u{2588}'
+                        } else {
+                            ' '
+                        }
+                    })
+                    .chain(std::iter::once('\n'))
+            })
+            .collect::<String>()
     }
 }
 
@@ -111,10 +123,18 @@ pub fn get_10_first() -> i32 {
     computer.get_every_fortieth_sum()
 }
 
-pub fn get_10_second() -> i32 {
-    let content = include_str!("../../inputs/10/input.example");
-    // println!("{}", content);
-    3
+pub fn get_10_second() -> String {
+    let content = include_str!("../../inputs/10/input.data");
+    let instructions = content
+        .lines()
+        .filter_map(|line| match line.parse() {
+            Err(_) => None,
+            Ok(e) => Some(e),
+        })
+        .collect::<Vec<Instruction>>();
+    let mut computer = Computer::default();
+    computer.apply_multiple(instructions);
+    computer.render()
 }
 
 #[cfg(test)]
@@ -213,8 +233,8 @@ mod test_10 {
     }
 
     #[test]
-    fn render_at_first_state() {
-        let commands = include_str!("../../inputs/10/input.example")
+    fn command_list_is_applied_rendered() {
+        let commands = include_str!("../../inputs/10/input.data")
             .lines()
             .filter_map(|line| match line.parse::<Instruction>() {
                 Err(_) => None,
@@ -223,22 +243,19 @@ mod test_10 {
             .collect::<Vec<Instruction>>();
         let mut computer = Computer::default();
         computer.apply_multiple(commands);
-        let first = computer.render_at_state(1);
-        assert_eq!(first, "###.....................................".to_owned());
-    }
+        let result = computer.render();
 
-    #[test]
-    fn render_at_second_state() {
-        let commands = include_str!("../../inputs/10/input.example")
-            .lines()
-            .filter_map(|line| match line.parse::<Instruction>() {
-                Err(_) => None,
-                Ok(e) => Some(e),
-            })
-            .collect::<Vec<Instruction>>();
-        let mut computer = Computer::default();
-        computer.apply_multiple(commands);
-        let first = computer.render_at_state(1);
-        assert_eq!(first, "###.....................................".to_owned());
+        /* some ascii art
+
+        ███  ████ █  █ ████  ██  ███  ████ ████
+        █  █ █    █ █     █ █  █ █  █ █    █
+        █  █ ███  ██     █  █    █  █ ███  ███
+        ███  █    █ █   █   █    ███  █    █
+        █ █  █    █ █  █    █  █ █    █    █
+        █  █ █    █  █ ████  ██  █    ████ █
+
+        */
+        let expected_string = "███  ████ █  █ ████  ██  ███  ████ ████ \n█  █ █    █ █     █ █  █ █  █ █    █    \n█  █ ███  ██     █  █    █  █ ███  ███  \n███  █    █ █   █   █    ███  █    █    \n█ █  █    █ █  █    █  █ █    █    █    \n█  █ █    █  █ ████  ██  █    ████ █    \n \n";
+        assert_eq!(result.to_owned(), expected_string.to_owned());
     }
 }
