@@ -3,6 +3,7 @@ mod _10;
 mod _11;
 mod _12;
 mod _13;
+mod _14;
 mod _2;
 mod _3;
 mod _4;
@@ -17,6 +18,7 @@ use _10::{get_10_first, get_10_second};
 use _11::{get_11_first, get_11_second};
 use _12::{get_12_first, get_12_second};
 use _13::{get_13_first, get_13_second};
+use _14::{get_14_first, get_14_second};
 use _2::{get_2_first, get_2_second};
 use _3::{get_3_first, get_3_second};
 use _4::{get_4_first, get_4_second};
@@ -66,4 +68,7 @@ fn main() {
     println!("13th day =>");
     println!("\t {}", get_13_first());
     println!("\t {}", get_13_second());
+    println!("14th day =>");
+    println!("\t {}", get_14_first());
+    println!("\t {}", get_14_second());
 }
