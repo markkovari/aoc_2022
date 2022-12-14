@@ -68,7 +68,7 @@ impl Cave {
     }
 
     fn drop_grain(&mut self) -> Option<Position> {
-        let mut pos = Position { x: 500, y: 0 };
+        let mut pos = Position { x: WIDTH / 2, y: 0 };
         if self.grid_xy[pos.x][pos.y] != b' ' {
             return None;
         }
@@ -81,9 +81,8 @@ impl Cave {
             } else if self.grid_xy[pos.x + 1][pos.y + 1] == b' ' {
                 pos.x += 1;
                 pos.y += 1;
-            } else {
-                return Some(pos);
             }
+            return Some(pos);
         }
         return None;
     }
