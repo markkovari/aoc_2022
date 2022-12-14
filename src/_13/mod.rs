@@ -81,17 +81,6 @@ pub fn solve_first(input: &str) -> usize {
 }
 
 pub fn solve_second(input: &str) -> usize {
-    let mut part1 = 0;
-
-    for (i, pair) in input.split("\n\n").enumerate() {
-        let mut lines = pair.lines();
-        let left = parse_packet(lines.next().unwrap()).unwrap().1;
-        let right = parse_packet(lines.next().unwrap()).unwrap().1;
-
-        if left < right {
-            part1 += i + 1;
-        }
-    }
     let mut packets: Vec<Packet> = input
         .lines()
         .filter(|l| !l.is_empty())

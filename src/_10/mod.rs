@@ -1,6 +1,4 @@
-use std::{path::Component, str::FromStr};
-
-use crate::_7::Command;
+use std::str::FromStr;
 
 #[derive(Clone, PartialEq, Eq, Hash, Debug)]
 enum Instruction {
@@ -24,16 +22,6 @@ impl FromStr for Instruction {
             Ok(e) => Ok(Instruction::AddX(e)),
         }
     }
-}
-
-fn read_instructions(content: &str) -> Vec<Instruction> {
-    content
-        .lines()
-        .filter_map(|line| match line.parse::<Instruction>() {
-            Ok(e) => Some(e),
-            Err(_) => None,
-        })
-        .collect()
 }
 
 #[derive(Clone, PartialEq, Eq, Hash)]
@@ -139,9 +127,17 @@ pub fn get_10_second() -> String {
 
 #[cfg(test)]
 mod test_10 {
-
-    const INPUT_TEXT: &str = include_str!("../../inputs/10/input.example");
     use super::*;
+
+    fn read_instructions(content: &str) -> Vec<Instruction> {
+        content
+            .lines()
+            .filter_map(|line| match line.parse::<Instruction>() {
+                Ok(e) => Some(e),
+                Err(_) => None,
+            })
+            .collect()
+    }
 
     #[test]
     fn test_parse_command() {

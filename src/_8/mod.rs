@@ -1,6 +1,6 @@
 use std::str::FromStr;
 
-use anyhow::{anyhow, Context};
+use anyhow::anyhow;
 
 #[derive(Debug)]
 struct Problem {
