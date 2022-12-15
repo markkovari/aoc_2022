@@ -33,10 +33,16 @@ mod tests {
     use super::*;
 
     const PROVIDED: &str = include_str!("../../inputs/14/input.example");
+    const PROD: &str = include_str!("../../inputs/14/input.data");
 
     #[test]
     fn one_provided() {
         assert_eq!(first_part(PROVIDED), 4);
+    }
+
+    #[test]
+    fn one_provided_prod() {
+        assert_eq!(first_part(PROD), 4);
     }
 
     #[test]
