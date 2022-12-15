@@ -36,11 +36,11 @@ mod tests {
 
     #[test]
     fn one_provided() {
-        assert_eq!(first_part(PROVIDED), 24);
+        assert_eq!(first_part(PROVIDED), 4);
     }
 
     #[test]
     fn two_provided() {
-        assert_eq!(second_part(PROVIDED), 93);
+        assert_eq!(second_part(PROVIDED), 4);
     }
 }
