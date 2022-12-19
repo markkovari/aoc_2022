@@ -63,7 +63,7 @@ fn main() {
     println!("\t {}", get_9_second());
     println!("10th day =>");
     println!("\t {}", get_10_first());
-    println!("\t {}", get_10_second());
+    println!("{}", get_10_second());
     println!("11th day =>");
     println!("\t {}", get_11_first());
     println!("\t {}", get_11_second());
