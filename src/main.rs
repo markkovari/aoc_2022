@@ -6,6 +6,7 @@ mod _13;
 mod _14;
 mod _15;
 mod _16;
+mod _17;
 mod _2;
 mod _3;
 mod _4;
@@ -22,6 +23,7 @@ use _12::{get_12_first, get_12_second};
 use _13::{get_13_first, get_13_second};
 use _14::{get_14_first, get_14_second};
 use _15::{get_15_first, get_15_second};
+use _16::solve_16;
 use _2::{get_2_first, get_2_second};
 use _3::{get_3_first, get_3_second};
 use _4::{get_4_first, get_4_second};
@@ -30,8 +32,6 @@ use _6::{get_6_first, get_6_second};
 use _7::{get_7_first, get_7_second};
 use _8::{get_8_first, get_8_second};
 use _9::{get_9_first, get_9_second};
-
-use crate::_16::solve_16;
 
 fn main() {
     println!("1st day =>");
