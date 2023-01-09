@@ -11,12 +11,12 @@ func SolveFirst(ofDay int) (int, int) {
 	if err != nil {
 		panic("UPSEY")
 	}
-	println("example first", first(example))
-	println("example second", second(example))
-	return first(data), second(data)
+	println("example first", first_1(example))
+	println("example second", second_1(example))
+	return first_1(data), second_1(data)
 }
 
-func first(content string) int {
+func first_1(content string) int {
 	islands := strings.Split(content, "\n\n")
 	maxValue := 0
 	for _, island := range islands {
@@ -28,7 +28,7 @@ func first(content string) int {
 	return maxValue
 }
 
-func second(content string) int {
+func second_1(content string) int {
 	islands := strings.Split(content, "\n\n")
 	values := make([]int, 0)
 	for _, island := range islands {

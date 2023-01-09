@@ -12,10 +12,11 @@ var associations = make(map[int]func(int) (int, int), 0)
 
 func init() {
 	associations[1] = pkg.SolveFirst
+	associations[2] = pkg.SolveSecond
 }
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("You should use a parameter")
+		fmt.Println("You should use at least one parameter")
 		os.Exit(1)
 	}
 	usedArg := os.Args[1]
